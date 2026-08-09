@@ -179,13 +179,13 @@ const Navbar = ({ onOpenResume }) => {
           left: 0;
           width: 100%;
           z-index: 1000;
-          padding: 1.25rem 0;
+          padding: 1.1rem 0;
           transition: all 0.3s ease;
         }
 
         .navbar-header.scrolled {
-          padding: 0.85rem 0;
-          background: rgba(9, 13, 22, 0.85);
+          padding: 0.75rem 0;
+          background: rgba(9, 13, 22, 0.92);
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
           border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -196,21 +196,34 @@ const Navbar = ({ onOpenResume }) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          gap: 0;
+          min-width: 0;
+          width: 100%;
         }
 
         .nav-logo {
           display: flex;
           align-items: center;
-          gap: 0.65rem;
+          gap: 0.6rem;
           font-weight: 800;
-          font-size: 1.15rem;
+          font-size: 1.1rem;
           letter-spacing: -0.01em;
           color: var(--text-primary);
+          flex-shrink: 0;
+          min-width: 0;
+          max-width: calc(100vw - 120px);
+        }
+
+        .logo-text {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         .logo-icon-box {
-          width: 38px;
-          height: 38px;
+          width: 36px;
+          height: 36px;
+          min-width: 36px;
           border-radius: 10px;
           background: var(--accent-gradient);
           display: flex;
@@ -267,12 +280,14 @@ const Navbar = ({ onOpenResume }) => {
         .nav-actions {
           display: flex;
           align-items: center;
-          gap: 1rem;
+          gap: 0.75rem;
+          flex-shrink: 0;
         }
 
         .btn-resume {
-          padding: 0.6rem 1.2rem;
-          font-size: 0.875rem;
+          padding: 0.55rem 1rem;
+          font-size: 0.85rem;
+          white-space: nowrap;
         }
 
         .mobile-menu-btn {
@@ -281,6 +296,7 @@ const Navbar = ({ onOpenResume }) => {
           padding: 0.4rem;
           border-radius: 8px;
           background: rgba(255, 255, 255, 0.05);
+          flex-shrink: 0;
         }
 
         /* Mobile Drawer */
@@ -364,6 +380,22 @@ const Navbar = ({ onOpenResume }) => {
           }
           .mobile-menu-btn {
             display: flex;
+          }
+          .btn-resume {
+            display: none;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .nav-logo {
+            font-size: 0.95rem;
+            gap: 0.45rem;
+            max-width: calc(100vw - 80px);
+          }
+          .logo-icon-box {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
           }
         }
       `}</style>

@@ -152,12 +152,14 @@ const developer = {
           gap: 3rem;
           align-items: center;
           width: 100%;
+          min-width: 0;
         }
 
         .hero-content, .hero-visual {
           min-width: 0;
           width: 100%;
           max-width: 100%;
+          overflow: hidden;
         }
 
         .status-badge {
@@ -180,20 +182,22 @@ const developer = {
           border-radius: 50%;
           background: #34d399;
           box-shadow: 0 0 8px #34d399;
+          flex-shrink: 0;
         }
 
         .hero-name {
-          font-size: clamp(2.2rem, 4.5vw, 3.75rem);
+          font-size: clamp(1.8rem, 6vw, 3.75rem);
           font-weight: 800;
           letter-spacing: -0.03em;
           line-height: 1.1;
           margin-bottom: 0.5rem;
           color: #ffffff;
           word-break: break-word;
+          overflow-wrap: break-word;
         }
 
         .hero-title-box {
-          font-size: clamp(1.1rem, 2vw, 1.5rem);
+          font-size: clamp(1rem, 2.5vw, 1.5rem);
           font-weight: 700;
           margin-bottom: 1.25rem;
           display: flex;
@@ -207,11 +211,12 @@ const developer = {
         }
 
         .hero-tagline {
-          font-size: 1.05rem;
+          font-size: clamp(0.9rem, 2vw, 1.05rem);
           color: var(--text-secondary);
           line-height: 1.7;
           margin-bottom: 2rem;
           max-width: 540px;
+          overflow-wrap: break-word;
         }
 
         .hero-actions {
@@ -303,8 +308,11 @@ const developer = {
           margin: 0;
           white-space: pre-wrap;
           word-break: break-word;
-          overflow-x: auto;
+          overflow-wrap: break-word;
+          overflow-x: hidden;
           max-width: 100%;
+          width: 100%;
+          box-sizing: border-box;
         }
 
         .card-footer {
@@ -327,30 +335,62 @@ const developer = {
           .hero-container {
             grid-template-columns: 1fr;
             text-align: center;
-            gap: 2.5rem;
+            gap: 2rem;
           }
           .hero-tagline { margin: 0 auto 1.75rem; }
           .hero-actions, .hero-stack-pills, .hero-title-box { justify-content: center; }
         }
 
-        @media (max-width: 550px) {
+        @media (max-width: 640px) {
           .hero-section {
-            padding: 5.5rem 0 3rem;
+            padding: 5.5rem 0 2.5rem;
+          }
+          .hero-name {
+            font-size: clamp(1.6rem, 8vw, 2.5rem);
+          }
+          .hero-title-box {
+            font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+          }
+          .hero-tagline {
+            font-size: 0.9rem;
+            line-height: 1.6;
           }
           .hero-actions {
             flex-direction: column;
             width: 100%;
+            gap: 0.65rem;
           }
           .hero-actions .btn {
             width: 100%;
+            justify-content: center;
+          }
+          .hero-actions .btn-icon {
+            display: inline-flex;
+            align-self: center;
           }
           .code-body {
-            font-size: 0.725rem;
-            padding: 0.85rem;
+            font-size: 0.7rem;
+            padding: 0.75rem;
+            line-height: 1.6;
+          }
+          .hero-stack-pills {
+            gap: 0.45rem;
+          }
+          .pill {
+            font-size: 0.74rem;
+            padding: 0.25rem 0.6rem;
           }
         }
-      `}</style>
-    </section>
+
+        @media (max-width: 380px) {
+          .hero-name {
+            font-size: 1.55rem;
+          }
+          .code-body {
+            font-size: 0.65rem;
+            padding: 0.65rem;
+          }
+        }
       `}</style>
     </section>
   );
