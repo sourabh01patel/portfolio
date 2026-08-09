@@ -121,8 +121,8 @@ Error generating stack: `+e.message+`
         .mobile-nav-drawer {
           position: fixed;
           top: 0;
-          right: -320px;
-          width: 300px;
+          right: -100%;
+          width: min(300px, 85vw);
           height: 100vh;
           background: #0d1322;
           z-index: 1100;
@@ -1628,6 +1628,35 @@ const developer = {
           font-size: 8.5pt;
           color: #64748b;
           font-style: italic;
+        }
+
+        @media (max-width: 640px) {
+          .resume-modal-overlay {
+            padding: 0.5rem;
+          }
+          .resume-paper {
+            padding: 1.5rem 1rem;
+          }
+          .modal-top-bar {
+            padding: 0.75rem 1rem;
+          }
+          .modal-title {
+            font-size: 0.875rem;
+          }
+          .r-name {
+            font-size: 16pt;
+          }
+          .r-item-header {
+            flex-direction: column;
+            gap: 0.2rem;
+          }
+          .r-edu-row {
+            flex-direction: column;
+            gap: 0.2rem;
+          }
+          .r-edu-right {
+            text-align: left;
+          }
         }
 
         /* Print Media Styles */
