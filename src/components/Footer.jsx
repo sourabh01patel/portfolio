@@ -20,10 +20,7 @@ const Footer = ({ onShowToast }) => {
     }
   };
 
-  const handleGithubClick = (e) => {
-    e.preventDefault();
-    onShowToast("GitHub Link Placeholder: Ready for user repository URL integration.");
-  };
+
 
   return (
     <footer className="footer-section">
@@ -79,8 +76,9 @@ const Footer = ({ onShowToast }) => {
               </a>
 
               <a 
-                href="#github"
-                onClick={handleGithubClick}
+                href={personalInfo.githubPlaceholder}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-secondary btn-sm"
               >
                 <GithubIcon size={16} />
