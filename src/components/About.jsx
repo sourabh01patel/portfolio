@@ -272,8 +272,6 @@ const About = () => {
         }
       `}</style>
     </section>
-      `}</style>
-    </section>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FolderGit2, Sparkles, Filter } from 'lucide-react';
+import { FolderGit2 } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
 import ProjectCard from './ProjectCard';
 

@@ -12,7 +12,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import ResumeModal from './components/ResumeModal';
-import { Info, CheckCircle2 } from 'lucide-react';
+import { Info } from 'lucide-react';
 
 function App() {
   const [resumeOpen, setResumeOpen] = useState(false);

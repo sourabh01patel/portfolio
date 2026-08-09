@@ -175,8 +175,6 @@ const ProjectCard = ({ project, onShowToast }) => {
         }
       `}</style>
     </div>
-      `}</style>
-    </div>
   );
 };
 

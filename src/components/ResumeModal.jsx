@@ -1,6 +1,6 @@
 import React from 'react';
-import { X, Printer, Download, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
-import { personalInfo, aboutData, skillsData, experienceData, projectsData, educationData, extraCurricularData } from '../data/portfolioData';
+import { X, Printer } from 'lucide-react';
+import { personalInfo, experienceData, projectsData, educationData } from '../data/portfolioData';
 
 const ResumeModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;

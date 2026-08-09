@@ -211,8 +211,6 @@ const Skills = () => {
         }
       `}</style>
     </section>
-      `}</style>
-    </section>
   );
 };
 

@@ -187,8 +187,6 @@ const Education = () => {
         }
       `}</style>
     </section>
-      `}</style>
-    </section>
   );
 };
 

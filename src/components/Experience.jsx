@@ -3,7 +3,6 @@ import {
   Briefcase, 
   MapPin, 
   Calendar, 
-  CheckCircle2, 
   Building2, 
   ChevronRight,
   Code

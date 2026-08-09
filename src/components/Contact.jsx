@@ -495,8 +495,6 @@ const Contact = ({ onShowToast }) => {
         }
       `}</style>
     </section>
-      `}</style>
-    </section>
   );
 };
 

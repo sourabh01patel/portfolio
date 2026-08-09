@@ -40,6 +40,7 @@ const developer = {
   const handleCopyCode = () => {
     navigator.clipboard.writeText(heroSnippet);
     setCopied(true);
+    if (onShowToast) onShowToast("Code snippet copied to clipboard!");
     setTimeout(() => setCopied(false), 2000);
   };
 

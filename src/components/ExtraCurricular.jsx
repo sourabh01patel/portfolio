@@ -4,8 +4,7 @@ import {
   Share2, 
   Trophy, 
   PenTool, 
-  TrendingUp, 
-  ChevronRight 
+  TrendingUp 
 } from 'lucide-react';
 import { extraCurricularData } from '../data/portfolioData';
 

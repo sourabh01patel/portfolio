@@ -1,9 +1,9 @@
 import React from 'react';
-import { Code2, Heart, ArrowUp } from 'lucide-react';
+import { Code2, Heart } from 'lucide-react';
 import { LinkedinIcon, GithubIcon } from './BrandIcons';
 import { personalInfo } from '../data/portfolioData';
 
-const Footer = ({ onShowToast }) => {
+const Footer = ({ _onShowToast }) => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
