@@ -181,4 +181,88 @@
     right: 0;
     border-right-color: var(--border);
   }
+  /* =========================
+   MOBILE RESPONSIVE FIX
+   ========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Tablet + Mobile */
+@media (max-width: 768px) {
+
+  .hero {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 16px;
+    overflow: hidden;
+  }
+
+  #center {
+    width: 100%;
+    max-width: 100%;
+    padding: 24px 16px;
+    gap: 16px;
+  }
+
+  #next-steps {
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column;
+  }
+
+  #next-steps > div {
+    width: 100%;
+    padding: 20px 16px;
+  }
+
+  #next-steps ul {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  #next-steps li {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  #next-steps a {
+    width: 100%;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+
+  .hero {
+    padding: 16px 12px;
+  }
+
+  #center {
+    padding: 20px 12px;
+  }
+
+  #next-steps > div {
+    padding: 16px 12px;
+  }
+}
 }
