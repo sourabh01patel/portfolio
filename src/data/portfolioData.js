@@ -6,8 +6,8 @@ export const personalInfo = {
   email: "sourabhpatelamilki2005@gmail.com",
   phone: "+91 8959433184",
   linkedin: "https://linkedin.com/in/sourabhpatel01",
-  githubPlaceholder: "https://github.com/sourabhpatel01", // Placeholder ready for user repo update
-  hasGithubRepo: false, // Flag indicating placeholder
+  githubPlaceholder: "https://github.com/sourabh01patel",
+  hasGithubRepo: true,
   summary: `Aspiring MERN Stack Developer with hands-on experience in JavaScript, React.js, Node.js, Express.js, MongoDB, HTML, and CSS. Strong understanding of frontend and backend development, RESTful APIs, CRUD operations, responsive web design, and database management. Passionate about building scalable, efficient, and user-friendly web applications using modern JavaScript technologies. A quick learner with strong problem-solving, analytical, and debugging skills.`,
   availability: "Open for Internships & Entry-Level Software Developer Roles",
 };

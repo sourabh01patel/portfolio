@@ -27,24 +27,26 @@ const Navbar = ({ onOpenResume }) => {
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 900);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);
-
-      // Section Spy logic
       const sections = navItems.map(item => document.getElementById(item.id)).filter(Boolean);
       const scrollPosition = window.scrollY + 200;
-
       for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section.offsetTop <= scrollPosition) {
-          setActiveSection(section.id);
+        if (sections[i].offsetTop <= scrollPosition) {
+          setActiveSection(sections[i].id);
           break;
         }
       }
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -54,15 +56,8 @@ const Navbar = ({ onOpenResume }) => {
     const element = document.getElementById(id);
     if (element) {
       const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: elementPosition, behavior: 'smooth' });
     }
   };
 
@@ -70,54 +65,62 @@ const Navbar = ({ onOpenResume }) => {
     <header className={`navbar-header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container navbar-container">
         {/* Brand Logo */}
-        <a 
-          href="#home" 
+        <a
+          href="#home"
           onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}
           className="nav-logo"
         >
           <div className="logo-icon-box">
-            <Code2 size={22} className="logo-icon" />
+            <Code2 size={isMobile ? 18 : 22} className="logo-icon" />
           </div>
           <span className="logo-text">
             SOURABH<span className="logo-dot">.PATEL</span>
           </span>
         </a>
 
-        {/* Desktop Nav Links */}
-        <nav className="desktop-nav">
-          <ul className="nav-list">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <button
-                  onClick={() => scrollToSection(item.id)}
-                  className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
-                >
-                  {item.label}
-                  {activeSection === item.id && <span className="active-indicator" />}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {/* Desktop Nav Links — hidden on mobile */}
+        {!isMobile && (
+          <nav className="desktop-nav">
+            <ul className="nav-list">
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <button
+                    onClick={() => scrollToSection(item.id)}
+                    className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
+                  >
+                    {item.label}
+                    {activeSection === item.id && <span className="active-indicator" />}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
 
-        {/* CTA & Mobile Toggle */}
+        {/* Right side actions */}
         <div className="nav-actions">
-          <button 
-            onClick={onOpenResume}
-            className="btn btn-primary btn-resume"
-            title="View & Download Resume PDF"
-          >
-            <Download size={16} />
-            <span>Download Resume</span>
-          </button>
+          {/* Download Resume — desktop only */}
+          {!isMobile && (
+            <button
+              onClick={onOpenResume}
+              className="btn btn-primary btn-resume"
+              title="View & Download Resume PDF"
+            >
+              <Download size={16} />
+              <span>Download Resume</span>
+            </button>
+          )}
 
-          <button
-            className="mobile-menu-btn"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Hamburger — mobile only */}
+          {isMobile && (
+            <button
+              className="mobile-menu-btn"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          )}
         </div>
       </div>
 
@@ -126,12 +129,9 @@ const Navbar = ({ onOpenResume }) => {
         <div className="mobile-drawer-header">
           <div className="nav-logo">
             <Code2 size={20} className="logo-icon" />
-            <span className="logo-text">SOURABH PATEL</span>
+            <span className="logo-text">SOURABH<span className="logo-dot">.PATEL</span></span>
           </div>
-          <button 
-            className="mobile-menu-btn" 
-            onClick={() => setMobileMenuOpen(false)}
-          >
+          <button className="mobile-menu-btn" onClick={() => setMobileMenuOpen(false)}>
             <X size={24} />
           </button>
         </div>
@@ -154,7 +154,7 @@ const Navbar = ({ onOpenResume }) => {
         </ul>
 
         <div className="mobile-drawer-footer">
-          <button 
+          <button
             onClick={() => { setMobileMenuOpen(false); onOpenResume(); }}
             className="btn btn-primary btn-full"
           >
@@ -166,10 +166,7 @@ const Navbar = ({ onOpenResume }) => {
 
       {/* Backdrop */}
       {mobileMenuOpen && (
-        <div 
-          className="mobile-backdrop" 
-          onClick={() => setMobileMenuOpen(false)} 
-        />
+        <div className="mobile-backdrop" onClick={() => setMobileMenuOpen(false)} />
       )}
 
       <style>{`
@@ -177,47 +174,47 @@ const Navbar = ({ onOpenResume }) => {
           position: fixed;
           top: 0;
           left: 0;
+          right: 0;
           width: 100%;
           z-index: 1000;
-          padding: 1.1rem 0;
+          padding: 1rem 0;
           transition: all 0.3s ease;
         }
 
         .navbar-header.scrolled {
-          padding: 0.75rem 0;
-          background: rgba(9, 13, 22, 0.92);
+          padding: 0.65rem 0;
+          background: rgba(9, 13, 22, 0.95);
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
           border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
         }
 
         .navbar-container {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 0;
-          min-width: 0;
           width: 100%;
+          min-width: 0;
+          overflow: hidden;
         }
 
         .nav-logo {
           display: flex;
           align-items: center;
-          gap: 0.6rem;
+          gap: 0.55rem;
           font-weight: 800;
-          font-size: 1.1rem;
+          font-size: 1.05rem;
           letter-spacing: -0.01em;
           color: var(--text-primary);
+          text-decoration: none;
           flex-shrink: 0;
           min-width: 0;
-          max-width: calc(100vw - 120px);
         }
 
         .logo-text {
           white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          font-size: inherit;
         }
 
         .logo-icon-box {
@@ -230,6 +227,7 @@ const Navbar = ({ onOpenResume }) => {
           align-items: center;
           justify-content: center;
           color: #000;
+          flex-shrink: 0;
         }
 
         .logo-dot {
@@ -239,21 +237,30 @@ const Navbar = ({ onOpenResume }) => {
         .desktop-nav {
           display: flex;
           align-items: center;
+          flex: 1;
+          justify-content: center;
         }
 
         .nav-list {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.25rem;
+          list-style: none;
+          margin: 0;
+          padding: 0;
         }
 
         .nav-link {
           position: relative;
-          padding: 0.5rem 0.85rem;
+          padding: 0.5rem 0.8rem;
           color: var(--text-secondary);
-          font-size: 0.9rem;
+          font-size: 0.875rem;
           font-weight: 500;
           transition: color 0.2s ease;
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-family: inherit;
         }
 
         .nav-link:hover {
@@ -285,17 +292,24 @@ const Navbar = ({ onOpenResume }) => {
         }
 
         .btn-resume {
-          padding: 0.55rem 1rem;
+          padding: 0.5rem 1rem;
           font-size: 0.85rem;
           white-space: nowrap;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
         }
 
         .mobile-menu-btn {
-          display: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           color: var(--text-primary);
-          padding: 0.4rem;
+          padding: 0.45rem;
           border-radius: 8px;
-          background: rgba(255, 255, 255, 0.05);
+          background: rgba(255, 255, 255, 0.07);
+          border: 1px solid rgba(255,255,255,0.1);
+          cursor: pointer;
           flex-shrink: 0;
         }
 
@@ -306,14 +320,16 @@ const Navbar = ({ onOpenResume }) => {
           right: -100%;
           width: min(300px, 85vw);
           height: 100vh;
+          height: 100dvh;
           background: #0d1322;
           z-index: 1100;
           padding: 1.5rem;
           display: flex;
           flex-direction: column;
-          transition: right 0.3s ease;
+          transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           border-left: 1px solid var(--border-color);
-          box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6);
+          box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7);
+          overflow-y: auto;
         }
 
         .mobile-nav-drawer.open {
@@ -324,29 +340,37 @@ const Navbar = ({ onOpenResume }) => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding-bottom: 1.5rem;
+          padding-bottom: 1.25rem;
           border-bottom: 1px solid var(--border-color);
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.25rem;
         }
 
         .mobile-nav-list {
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
+          gap: 0.4rem;
           flex: 1;
+          list-style: none;
+          margin: 0;
+          padding: 0;
         }
 
         .mobile-nav-link {
           width: 100%;
           display: flex;
           align-items: center;
-          gap: 1rem;
+          gap: 0.85rem;
           padding: 0.85rem 1rem;
           border-radius: 10px;
           color: var(--text-secondary);
           font-size: 1rem;
           font-weight: 500;
           transition: all 0.2s ease;
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-family: inherit;
+          text-align: left;
         }
 
         .mobile-nav-link:hover, .mobile-nav-link.active {
@@ -355,12 +379,14 @@ const Navbar = ({ onOpenResume }) => {
         }
 
         .mobile-drawer-footer {
-          padding-top: 1.5rem;
+          padding-top: 1.25rem;
           border-top: 1px solid var(--border-color);
+          margin-top: auto;
         }
 
         .btn-full {
           width: 100%;
+          justify-content: center;
         }
 
         .mobile-backdrop {
@@ -369,34 +395,9 @@ const Navbar = ({ onOpenResume }) => {
           left: 0;
           width: 100vw;
           height: 100vh;
-          background: rgba(0, 0, 0, 0.7);
+          background: rgba(0, 0, 0, 0.75);
           backdrop-filter: blur(4px);
           z-index: 1050;
-        }
-
-        @media (max-width: 900px) {
-          .desktop-nav {
-            display: none;
-          }
-          .mobile-menu-btn {
-            display: flex;
-          }
-          .btn-resume {
-            display: none;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .nav-logo {
-            font-size: 0.95rem;
-            gap: 0.45rem;
-            max-width: calc(100vw - 80px);
-          }
-          .logo-icon-box {
-            width: 32px;
-            height: 32px;
-            min-width: 32px;
-          }
         }
       `}</style>
     </header>

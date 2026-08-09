@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, 
   Terminal, 
-  Sparkles, 
   Database, 
   Server, 
   Layers, 
@@ -17,14 +16,18 @@ const Hero = ({ onShowToast }) => {
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
   const [copied, setCopied] = useState(false);
 
-  const heroSnippet = `// Sourabh Patel - MERN Stack Developer
+  // Shorter lines so nothing overflows on any screen width
+  const heroSnippet = `// Sourabh Patel - MERN Dev
 const developer = {
   name: "Sourabh Patel",
   role: "Full Stack Developer",
-  stack: ["MongoDB", "Express.js", "React.js", "Node.js"],
-  education: "B.Tech CSE (6th Semester)",
-  location: "Rewa, Madhya Pradesh",
-  status: "Available for Internships & Full-time Roles"
+  stack: [
+    "MongoDB", "Express.js",
+    "React.js", "Node.js"
+  ],
+  edu: "B.Tech CSE (6th Sem)",
+  location: "Rewa, MP",
+  open: true
 };`;
 
   useEffect(() => {
@@ -38,11 +41,6 @@ const developer = {
     navigator.clipboard.writeText(heroSnippet);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleGithubClick = (e) => {
-    e.preventDefault();
-    onShowToast("GitHub Link Placeholder: Ready for user repository URL integration.");
   };
 
   return (
@@ -67,40 +65,43 @@ const developer = {
           </div>
 
           <p className="hero-tagline">
-            Building responsive, scalable, and user-friendly web applications with React.js, Node.js, Express.js, and MongoDB.
+            Building responsive, scalable web apps with React.js, Node.js, Express.js & MongoDB.
           </p>
 
           <div className="hero-actions">
-            <a href="#projects" className="btn btn-primary">
+            <a href="#projects" className="btn btn-primary hero-btn">
               <span>View Projects</span>
               <ArrowRight size={17} />
             </a>
 
-            <a href="#contact" className="btn btn-secondary">
+            <a href="#contact" className="btn btn-secondary hero-btn">
               <span>Contact Me</span>
             </a>
 
-            <a 
-              href={personalInfo.linkedin} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn-icon"
-              title="LinkedIn Profile"
-            >
-              <LinkedinIcon size={18} />
-            </a>
+            <div className="hero-icon-btns">
+              <a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-icon"
+                title="LinkedIn Profile"
+              >
+                <LinkedinIcon size={18} />
+              </a>
 
-            <a 
-              href="#github"
-              onClick={handleGithubClick}
-              className="btn-icon"
-              title="GitHub Placeholder"
-            >
-              <GithubIcon size={18} />
-            </a>
+              <a
+                href={personalInfo.githubPlaceholder}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-icon"
+                title="GitHub Profile"
+              >
+                <GithubIcon size={18} />
+              </a>
+            </div>
           </div>
 
-          {/* Clean Tech Pills */}
+          {/* Tech Pills */}
           <div className="hero-stack-pills">
             <span className="pill"><Database size={13} className="icon-mongo" /> MongoDB</span>
             <span className="pill"><Server size={13} className="icon-express" /> Express.js</span>
@@ -109,7 +110,7 @@ const developer = {
           </div>
         </div>
 
-        {/* Right Column: Clean Code Card */}
+        {/* Right Column: Code Card */}
         <div className="hero-visual">
           <div className="clean-code-card">
             <div className="card-topbar">
@@ -124,14 +125,12 @@ const developer = {
               </button>
             </div>
 
-            <pre className="code-body">
-              <code>{heroSnippet}</code>
-            </pre>
+            <pre className="code-body"><code>{heroSnippet}</code></pre>
 
             <div className="card-footer">
               <span className="status-indicator">
                 <CheckCircle2 size={12} className="text-emerald" />
-                <span>RESTful APIs & CRUD Ready</span>
+                <span>RESTful APIs &amp; CRUD Ready</span>
               </span>
             </div>
           </div>
@@ -140,25 +139,32 @@ const developer = {
 
       <style>{`
         .hero-section {
-          padding: 7.5rem 0 4.5rem;
-          min-height: 88vh;
+          padding: 7rem 0 4rem;
+          min-height: 90vh;
           display: flex;
           align-items: center;
+          width: 100%;
+          overflow: hidden;
         }
 
         .hero-container {
           display: grid;
-          grid-template-columns: 1.15fr 0.85fr;
-          gap: 3rem;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 2.5rem;
           align-items: center;
           width: 100%;
           min-width: 0;
         }
 
-        .hero-content, .hero-visual {
+        .hero-content {
           min-width: 0;
           width: 100%;
-          max-width: 100%;
+          overflow: hidden;
+        }
+
+        .hero-visual {
+          min-width: 0;
+          width: 100%;
           overflow: hidden;
         }
 
@@ -168,12 +174,12 @@ const developer = {
           gap: 0.5rem;
           padding: 0.35rem 0.85rem;
           border-radius: 9999px;
-          background: rgba(16, 185, 129, 0.06);
-          border: 1px solid rgba(16, 185, 129, 0.2);
+          background: rgba(16, 185, 129, 0.08);
+          border: 1px solid rgba(16, 185, 129, 0.25);
           color: #34d399;
           font-size: 0.8rem;
           font-weight: 600;
-          margin-bottom: 1.25rem;
+          margin-bottom: 1.1rem;
         }
 
         .pulse-dot {
@@ -183,13 +189,19 @@ const developer = {
           background: #34d399;
           box-shadow: 0 0 8px #34d399;
           flex-shrink: 0;
+          animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.4; }
         }
 
         .hero-name {
-          font-size: clamp(1.8rem, 6vw, 3.75rem);
-          font-weight: 800;
+          font-size: clamp(1.75rem, 5.5vw, 3.75rem);
+          font-weight: 900;
           letter-spacing: -0.03em;
-          line-height: 1.1;
+          line-height: 1.05;
           margin-bottom: 0.5rem;
           color: #ffffff;
           word-break: break-word;
@@ -197,12 +209,12 @@ const developer = {
         }
 
         .hero-title-box {
-          font-size: clamp(1rem, 2.5vw, 1.5rem);
+          font-size: clamp(0.95rem, 2.5vw, 1.45rem);
           font-weight: 700;
-          margin-bottom: 1.25rem;
+          margin-bottom: 1.1rem;
           display: flex;
           align-items: center;
-          gap: 0.4rem;
+          gap: 0.35rem;
           flex-wrap: wrap;
         }
 
@@ -211,41 +223,51 @@ const developer = {
         }
 
         .hero-tagline {
-          font-size: clamp(0.9rem, 2vw, 1.05rem);
+          font-size: clamp(0.875rem, 1.8vw, 1rem);
           color: var(--text-secondary);
           line-height: 1.7;
-          margin-bottom: 2rem;
-          max-width: 540px;
+          margin-bottom: 1.75rem;
+          max-width: 480px;
           overflow-wrap: break-word;
         }
 
         .hero-actions {
           display: flex;
           align-items: center;
-          gap: 0.85rem;
-          margin-bottom: 2rem;
+          gap: 0.75rem;
+          margin-bottom: 1.75rem;
           flex-wrap: wrap;
+        }
+
+        .hero-btn {
+          flex-shrink: 0;
+        }
+
+        .hero-icon-btns {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          flex-shrink: 0;
         }
 
         .hero-stack-pills {
           display: flex;
           align-items: center;
-          gap: 0.6rem;
+          gap: 0.5rem;
           flex-wrap: wrap;
-          padding-top: 1.25rem;
+          padding-top: 1.1rem;
           border-top: 1px solid var(--border-color);
-          max-width: 100%;
         }
 
         .pill {
           display: inline-flex;
           align-items: center;
-          gap: 0.35rem;
-          padding: 0.3rem 0.75rem;
+          gap: 0.3rem;
+          padding: 0.3rem 0.7rem;
           border-radius: 6px;
-          background: rgba(255, 255, 255, 0.02);
+          background: rgba(255, 255, 255, 0.03);
           border: 1px solid var(--border-color);
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           font-weight: 500;
           color: var(--text-secondary);
           white-space: nowrap;
@@ -256,39 +278,34 @@ const developer = {
         .icon-react { color: #38bdf8; }
         .icon-node { color: #22c55e; }
 
-        /* Clean Code Card */
+        /* Code Card */
         .clean-code-card {
-          background: rgba(15, 23, 42, 0.75);
-          backdrop-filter: blur(12px);
-          border: 1px solid var(--border-color);
-          border-radius: var(--radius-md);
+          background: rgba(13, 19, 34, 0.9);
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 12px;
           overflow: hidden;
-          box-shadow: var(--shadow-md);
+          box-shadow: 0 20px 60px rgba(0,0,0,0.5);
           width: 100%;
-          max-width: 100%;
           min-width: 0;
         }
 
         .card-topbar {
-          background: rgba(9, 13, 22, 0.9);
-          padding: 0.65rem 1rem;
+          background: rgba(9, 13, 22, 0.95);
+          padding: 0.6rem 0.9rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          border-bottom: 1px solid var(--border-color);
+          border-bottom: 1px solid rgba(255,255,255,0.07);
         }
 
-        .window-dots {
-          display: flex;
-          gap: 5px;
-        }
+        .window-dots { display: flex; gap: 5px; }
         .dot { width: 10px; height: 10px; border-radius: 50%; }
         .dot-red { background: #ef4444; }
         .dot-yellow { background: #f59e0b; }
         .dot-green { background: #10b981; }
 
         .card-filename {
-          font-size: 0.775rem;
+          font-size: 0.75rem;
           font-family: var(--font-code);
           color: var(--text-muted);
         }
@@ -296,30 +313,41 @@ const developer = {
         .copy-btn {
           color: var(--text-muted);
           transition: color 0.2s;
+          background: none;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
         }
         .copy-btn:hover { color: var(--text-primary); }
 
         .code-body {
-          padding: 1.1rem;
+          display: block;
+          padding: 1rem;
           font-family: var(--font-code);
-          font-size: 0.775rem;
-          line-height: 1.65;
+          font-size: 0.78rem;
+          line-height: 1.7;
           color: #cbd5e1;
           margin: 0;
-          white-space: pre-wrap;
-          word-break: break-word;
-          overflow-wrap: break-word;
-          overflow-x: hidden;
+          white-space: pre;
+          overflow-x: auto;
+          overflow-y: hidden;
           max-width: 100%;
-          width: 100%;
           box-sizing: border-box;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .code-body code {
+          display: block;
+          width: max-content;
+          min-width: 100%;
         }
 
         .card-footer {
-          padding: 0.55rem 1rem;
-          background: rgba(9, 13, 22, 0.9);
-          border-top: 1px solid var(--border-color);
-          font-size: 0.75rem;
+          padding: 0.5rem 0.9rem;
+          background: rgba(9, 13, 22, 0.95);
+          border-top: 1px solid rgba(255,255,255,0.07);
+          font-size: 0.73rem;
           color: var(--text-muted);
         }
 
@@ -331,64 +359,64 @@ const developer = {
 
         .text-emerald { color: #10b981; }
 
+        /* === RESPONSIVE BREAKPOINTS === */
+
         @media (max-width: 900px) {
           .hero-container {
             grid-template-columns: 1fr;
             text-align: center;
             gap: 2rem;
           }
-          .hero-tagline { margin: 0 auto 1.75rem; }
-          .hero-actions, .hero-stack-pills, .hero-title-box { justify-content: center; }
+          .hero-tagline {
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .hero-actions,
+          .hero-stack-pills,
+          .hero-title-box {
+            justify-content: center;
+          }
+          .hero-icon-btns {
+            justify-content: center;
+          }
         }
 
         @media (max-width: 640px) {
           .hero-section {
             padding: 5.5rem 0 2.5rem;
+            min-height: auto;
           }
           .hero-name {
-            font-size: clamp(1.6rem, 8vw, 2.5rem);
-          }
-          .hero-title-box {
-            font-size: clamp(0.95rem, 3.5vw, 1.2rem);
-          }
-          .hero-tagline {
-            font-size: 0.9rem;
-            line-height: 1.6;
+            font-size: clamp(1.65rem, 9vw, 2.6rem);
           }
           .hero-actions {
             flex-direction: column;
+            align-items: center;
             width: 100%;
-            gap: 0.65rem;
+            gap: 0.6rem;
           }
-          .hero-actions .btn {
+          .hero-btn {
             width: 100%;
+            max-width: 280px;
             justify-content: center;
           }
-          .hero-actions .btn-icon {
-            display: inline-flex;
-            align-self: center;
-          }
           .code-body {
-            font-size: 0.7rem;
-            padding: 0.75rem;
-            line-height: 1.6;
-          }
-          .hero-stack-pills {
-            gap: 0.45rem;
+            font-size: 0.72rem;
+            padding: 0.8rem;
           }
           .pill {
-            font-size: 0.74rem;
-            padding: 0.25rem 0.6rem;
+            font-size: 0.73rem;
+            padding: 0.25rem 0.55rem;
           }
         }
 
-        @media (max-width: 380px) {
+        @media (max-width: 400px) {
           .hero-name {
-            font-size: 1.55rem;
+            font-size: 1.6rem;
           }
           .code-body {
-            font-size: 0.65rem;
-            padding: 0.65rem;
+            font-size: 0.67rem;
+            padding: 0.7rem;
           }
         }
       `}</style>
