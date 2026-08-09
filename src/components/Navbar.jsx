@@ -287,8 +287,8 @@ const Navbar = ({ onOpenResume }) => {
         .mobile-nav-drawer {
           position: fixed;
           top: 0;
-          right: -320px;
-          width: 300px;
+          right: -100%;
+          width: min(300px, 85vw);
           height: 100vh;
           background: #0d1322;
           z-index: 1100;

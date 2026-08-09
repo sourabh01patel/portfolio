@@ -346,6 +346,35 @@ const ResumeModal = ({ isOpen, onClose }) => {
           font-style: italic;
         }
 
+        @media (max-width: 640px) {
+          .resume-modal-overlay {
+            padding: 0.5rem;
+          }
+          .resume-paper {
+            padding: 1.5rem 1rem;
+          }
+          .modal-top-bar {
+            padding: 0.75rem 1rem;
+          }
+          .modal-title {
+            font-size: 0.875rem;
+          }
+          .r-name {
+            font-size: 16pt;
+          }
+          .r-item-header {
+            flex-direction: column;
+            gap: 0.2rem;
+          }
+          .r-edu-row {
+            flex-direction: column;
+            gap: 0.2rem;
+          }
+          .r-edu-right {
+            text-align: left;
+          }
+        }
+
         /* Print Media Styles */
         @media print {
           body * {
