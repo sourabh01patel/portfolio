@@ -290,6 +290,12 @@ const Contact = ({ onShowToast }) => {
           grid-template-columns: 1fr 1.2fr;
           gap: 2rem;
           align-items: start;
+          width: 100%;
+        }
+
+        .contact-info-col, .contact-form-col {
+          min-width: 0;
+          width: 100%;
         }
 
         .contact-info-col {
@@ -303,6 +309,7 @@ const Contact = ({ onShowToast }) => {
           align-items: center;
           gap: 1rem;
           padding: 1.35rem 1.5rem;
+          min-width: 0;
         }
 
         .info-icon-box {
@@ -322,6 +329,7 @@ const Contact = ({ onShowToast }) => {
           flex-direction: column;
           gap: 0.2rem;
           flex: 1;
+          min-width: 0;
           overflow: hidden;
         }
 
@@ -352,6 +360,7 @@ const Contact = ({ onShowToast }) => {
           padding: 0.4rem;
           border-radius: 6px;
           transition: all 0.2s;
+          flex-shrink: 0;
         }
 
         .copy-btn:hover {
@@ -474,6 +483,18 @@ const Contact = ({ onShowToast }) => {
             grid-template-columns: 1fr;
           }
         }
+
+        @media (max-width: 500px) {
+          .contact-form-col {
+            padding: 1.25rem;
+          }
+          .info-card {
+            padding: 1rem;
+            gap: 0.75rem;
+          }
+        }
+      `}</style>
+    </section>
       `}</style>
     </section>
   );

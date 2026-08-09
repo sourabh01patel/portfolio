@@ -97,6 +97,7 @@ const Experience = () => {
           max-width: 960px;
           margin: 0 auto;
           position: relative;
+          width: 100%;
         }
 
         .timeline-item {
@@ -104,6 +105,16 @@ const Experience = () => {
           grid-template-columns: 40px 1fr;
           gap: 1.5rem;
           position: relative;
+          width: 100%;
+        }
+
+        .timeline-content {
+          padding: 2.25rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+          min-width: 0;
+          width: 100%;
         }
 
         .timeline-marker {
@@ -130,13 +141,6 @@ const Experience = () => {
           margin-top: 0.5rem;
         }
 
-        .timeline-content {
-          padding: 2.25rem;
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-        }
-
         .exp-top-bar {
           display: flex;
           justify-content: space-between;
@@ -145,6 +149,10 @@ const Experience = () => {
           gap: 1rem;
           padding-bottom: 1.25rem;
           border-bottom: 1px solid var(--border-color);
+        }
+
+        .exp-role-info {
+          min-width: 0;
         }
 
         .exp-badge {
@@ -160,10 +168,11 @@ const Experience = () => {
         }
 
         .exp-role {
-          font-size: 1.5rem;
+          font-size: clamp(1.2rem, 3.5vw, 1.5rem);
           font-weight: 800;
           color: var(--text-primary);
           line-height: 1.2;
+          word-break: break-word;
         }
 
         .exp-company-box {
@@ -171,6 +180,7 @@ const Experience = () => {
           align-items: center;
           gap: 0.4rem;
           margin-top: 0.35rem;
+          flex-wrap: wrap;
         }
 
         .exp-company {
@@ -251,12 +261,24 @@ const Experience = () => {
           .timeline-marker {
             display: none;
           }
+          .timeline-content {
+            padding: 1.5rem;
+          }
           .exp-top-bar {
             flex-direction: column;
             align-items: flex-start;
           }
           .exp-meta-info {
             align-items: flex-start;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .timeline-content {
+            padding: 1.25rem;
+          }
+          .responsibilities-list li {
+            font-size: 0.875rem;
           }
         }
       `}</style>

@@ -123,6 +123,7 @@ const Skills = () => {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 1.5rem;
+          width: 100%;
         }
 
         .skill-category-card {
@@ -130,6 +131,8 @@ const Skills = () => {
           display: flex;
           flex-direction: column;
           gap: 1.25rem;
+          min-width: 0;
+          width: 100%;
         }
 
         .category-header {
@@ -195,6 +198,19 @@ const Skills = () => {
             grid-template-columns: 1fr;
           }
         }
+
+        @media (max-width: 500px) {
+          .skill-filter-btn {
+            font-size: 0.775rem;
+            padding: 0.35rem 0.8rem;
+          }
+          .clean-skill-pill {
+            font-size: 0.8rem;
+            padding: 0.35rem 0.65rem;
+          }
+        }
+      `}</style>
+    </section>
       `}</style>
     </section>
   );

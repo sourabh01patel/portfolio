@@ -70,12 +70,15 @@ const ProjectCard = ({ project, onShowToast }) => {
           display: flex;
           flex-direction: column;
           gap: 1.25rem;
+          min-width: 0;
+          width: 100%;
         }
 
         .project-top {
           display: flex;
           flex-direction: column;
           gap: 0.35rem;
+          min-width: 0;
         }
 
         .project-badge {
@@ -93,9 +96,10 @@ const ProjectCard = ({ project, onShowToast }) => {
         }
 
         .project-title {
-          font-size: 1.35rem;
+          font-size: clamp(1.15rem, 3vw, 1.35rem);
           font-weight: 800;
           color: var(--text-primary);
+          word-break: break-word;
         }
 
         .project-subtitle {
@@ -148,13 +152,29 @@ const ProjectCard = ({ project, onShowToast }) => {
           gap: 0.75rem;
           margin-top: auto;
           padding-top: 0.5rem;
+          flex-wrap: wrap;
         }
 
         .btn-sm {
           padding: 0.55rem 1rem;
           font-size: 0.825rem;
           flex: 1;
+          min-width: 120px;
         }
+
+        @media (max-width: 480px) {
+          .project-card {
+            padding: 1.25rem;
+          }
+          .project-actions {
+            flex-direction: column;
+          }
+          .project-actions .btn-sm {
+            width: 100%;
+          }
+        }
+      `}</style>
+    </div>
       `}</style>
     </div>
   );

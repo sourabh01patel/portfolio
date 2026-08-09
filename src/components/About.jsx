@@ -124,12 +124,12 @@ const About = () => {
           grid-template-columns: 1.1fr 0.9fr;
           gap: 2rem;
           align-items: start;
+          width: 100%;
         }
 
-        .about-bio-card {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
+        .about-bio-card, .about-highlights-col {
+          min-width: 0;
+          width: 100%;
         }
 
         .card-heading {
@@ -194,6 +194,7 @@ const About = () => {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 1.25rem;
+          width: 100%;
         }
 
         .stat-card {
@@ -201,6 +202,7 @@ const About = () => {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
+          min-width: 0;
         }
 
         .stat-icon-box {
@@ -259,6 +261,17 @@ const About = () => {
             grid-template-columns: 1fr;
           }
         }
+
+        @media (max-width: 500px) {
+          .stats-grid {
+            grid-template-columns: 1fr;
+          }
+          .bio-goals {
+            padding: 1rem;
+          }
+        }
+      `}</style>
+    </section>
       `}</style>
     </section>
   );

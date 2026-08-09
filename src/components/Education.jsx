@@ -70,12 +70,15 @@ const Education = () => {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 1.75rem;
+          width: 100%;
         }
 
         .education-card {
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
+          min-width: 0;
+          width: 100%;
         }
 
         .edu-card-top {
@@ -110,13 +113,15 @@ const Education = () => {
           display: flex;
           flex-direction: column;
           gap: 0.65rem;
+          min-width: 0;
         }
 
         .edu-degree {
-          font-size: 1.25rem;
+          font-size: clamp(1.1rem, 3vw, 1.25rem);
           font-weight: 800;
           color: var(--text-primary);
           line-height: 1.3;
+          word-break: break-word;
         }
 
         .edu-field {
@@ -132,12 +137,14 @@ const Education = () => {
           border: 1px solid var(--border-color);
           display: inline-block;
           margin: 0.25rem 0;
+          max-width: 100%;
         }
 
         .edu-institution {
           font-size: 0.85rem;
           color: var(--text-secondary);
           font-weight: 500;
+          word-break: break-word;
         }
 
         .edu-meta-list {
@@ -172,6 +179,14 @@ const Education = () => {
             grid-template-columns: 1fr;
           }
         }
+
+        @media (max-width: 480px) {
+          .education-card {
+            padding: 1.25rem;
+          }
+        }
+      `}</style>
+    </section>
       `}</style>
     </section>
   );

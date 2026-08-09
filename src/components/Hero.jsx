@@ -140,7 +140,7 @@ const developer = {
 
       <style>{`
         .hero-section {
-          padding: 8.5rem 0 5rem;
+          padding: 7.5rem 0 4.5rem;
           min-height: 88vh;
           display: flex;
           align-items: center;
@@ -149,8 +149,15 @@ const developer = {
         .hero-container {
           display: grid;
           grid-template-columns: 1.15fr 0.85fr;
-          gap: 3.5rem;
+          gap: 3rem;
           align-items: center;
+          width: 100%;
+        }
+
+        .hero-content, .hero-visual {
+          min-width: 0;
+          width: 100%;
+          max-width: 100%;
         }
 
         .status-badge {
@@ -176,21 +183,23 @@ const developer = {
         }
 
         .hero-name {
-          font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+          font-size: clamp(2.2rem, 4.5vw, 3.75rem);
           font-weight: 800;
           letter-spacing: -0.03em;
           line-height: 1.1;
           margin-bottom: 0.5rem;
           color: #ffffff;
+          word-break: break-word;
         }
 
         .hero-title-box {
-          font-size: clamp(1.2rem, 2vw, 1.5rem);
+          font-size: clamp(1.1rem, 2vw, 1.5rem);
           font-weight: 700;
           margin-bottom: 1.25rem;
           display: flex;
           align-items: center;
           gap: 0.4rem;
+          flex-wrap: wrap;
         }
 
         .title-prefix {
@@ -220,6 +229,7 @@ const developer = {
           flex-wrap: wrap;
           padding-top: 1.25rem;
           border-top: 1px solid var(--border-color);
+          max-width: 100%;
         }
 
         .pill {
@@ -233,6 +243,7 @@ const developer = {
           font-size: 0.8rem;
           font-weight: 500;
           color: var(--text-secondary);
+          white-space: nowrap;
         }
 
         .icon-mongo { color: #10b981; }
@@ -248,6 +259,9 @@ const developer = {
           border-radius: var(--radius-md);
           overflow: hidden;
           box-shadow: var(--shadow-md);
+          width: 100%;
+          max-width: 100%;
+          min-width: 0;
         }
 
         .card-topbar {
@@ -281,13 +295,16 @@ const developer = {
         .copy-btn:hover { color: var(--text-primary); }
 
         .code-body {
-          padding: 1.25rem;
+          padding: 1.1rem;
           font-family: var(--font-code);
-          font-size: 0.8rem;
+          font-size: 0.775rem;
           line-height: 1.65;
           color: #cbd5e1;
           margin: 0;
+          white-space: pre-wrap;
+          word-break: break-word;
           overflow-x: auto;
+          max-width: 100%;
         }
 
         .card-footer {
@@ -315,6 +332,25 @@ const developer = {
           .hero-tagline { margin: 0 auto 1.75rem; }
           .hero-actions, .hero-stack-pills, .hero-title-box { justify-content: center; }
         }
+
+        @media (max-width: 550px) {
+          .hero-section {
+            padding: 5.5rem 0 3rem;
+          }
+          .hero-actions {
+            flex-direction: column;
+            width: 100%;
+          }
+          .hero-actions .btn {
+            width: 100%;
+          }
+          .code-body {
+            font-size: 0.725rem;
+            padding: 0.85rem;
+          }
+        }
+      `}</style>
+    </section>
       `}</style>
     </section>
   );
