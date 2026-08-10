@@ -310,6 +310,16 @@ body {
   gap: 1.75rem;
 }
 
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+pre, code {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 @media (max-width: 850px) {
   .grid-2 {
     grid-template-columns: 1fr;
@@ -339,7 +349,7 @@ body {
     padding: 0 1rem;
   }
   .glass-card {
-    padding: 1.25rem;
+    padding: 1.2rem 1rem;
   }
   .toast-container {
     left: 1rem;
@@ -347,7 +357,26 @@ body {
     bottom: 1.25rem;
   }
   .btn {
-    padding: 0.75rem 1.25rem;
+    padding: 0.7rem 1.15rem;
     font-size: 0.85rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  .section {
+    padding: 2.75rem 0;
+  }
+  .section-title {
+    font-size: 1.55rem;
+  }
+  .section-subtitle {
+    font-size: 0.875rem;
+  }
+  .glass-card {
+    padding: 1rem 0.75rem;
   }
 }

@@ -200,13 +200,19 @@ const Skills = () => {
         }
 
         @media (max-width: 500px) {
+          .skills-filter-bar {
+            gap: 0.35rem;
+          }
           .skill-filter-btn {
-            font-size: 0.775rem;
-            padding: 0.35rem 0.8rem;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.7rem;
           }
           .clean-skill-pill {
-            font-size: 0.8rem;
-            padding: 0.35rem 0.65rem;
+            font-size: 0.78rem;
+            padding: 0.3rem 0.6rem;
+          }
+          .skill-category-card {
+            padding: 1.2rem 1rem;
           }
         }
       `}</style>
