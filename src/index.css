@@ -381,6 +381,8 @@ pre {
   }
   .section-title {
     font-size: 1.55rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   .section-subtitle {
     font-size: 0.875rem;
@@ -389,4 +391,3 @@ pre {
     padding: 1rem 0.75rem;
   }
 }
-
