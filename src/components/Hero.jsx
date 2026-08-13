@@ -210,17 +210,24 @@ const developer = {
         }
 
         .hero-title-box {
-          font-size: clamp(0.95rem, 2.5vw, 1.45rem);
+          font-size: clamp(0.95rem, 3.8vw, 1.45rem);
           font-weight: 700;
           margin-bottom: 1.1rem;
           display: flex;
           align-items: center;
           gap: 0.35rem;
           flex-wrap: wrap;
+          line-height: 1.35;
         }
 
         .title-prefix {
           color: var(--text-secondary);
+        }
+
+        .hero-title-dynamic {
+          display: inline-block;
+          min-width: 0;
+          word-break: break-word;
         }
 
         .hero-tagline {
@@ -230,6 +237,7 @@ const developer = {
           margin-bottom: 1.75rem;
           max-width: 480px;
           overflow-wrap: break-word;
+          word-break: break-word;
         }
 
         .hero-actions {
@@ -287,7 +295,9 @@ const developer = {
           overflow: hidden;
           box-shadow: 0 20px 60px rgba(0,0,0,0.5);
           width: 100%;
+          max-width: 100%;
           min-width: 0;
+          box-sizing: border-box;
         }
 
         .card-topbar {
@@ -297,9 +307,10 @@ const developer = {
           align-items: center;
           justify-content: space-between;
           border-bottom: 1px solid rgba(255,255,255,0.07);
+          gap: 0.5rem;
         }
 
-        .window-dots { display: flex; gap: 5px; }
+        .window-dots { display: flex; gap: 5px; flex-shrink: 0; }
         .dot { width: 10px; height: 10px; border-radius: 50%; }
         .dot-red { background: #ef4444; }
         .dot-yellow { background: #f59e0b; }
@@ -309,6 +320,9 @@ const developer = {
           font-size: 0.75rem;
           font-family: var(--font-code);
           color: var(--text-muted);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
 
         .copy-btn {
@@ -319,6 +333,7 @@ const developer = {
           cursor: pointer;
           display: flex;
           align-items: center;
+          flex-shrink: 0;
         }
         .copy-btn:hover { color: var(--text-primary); }
 
@@ -327,7 +342,7 @@ const developer = {
           padding: 1rem;
           font-family: var(--font-code);
           font-size: 0.78rem;
-          line-height: 1.7;
+          line-height: 1.65;
           color: #cbd5e1;
           margin: 0;
           white-space: pre;
@@ -339,9 +354,9 @@ const developer = {
         }
 
         .code-body code {
-          display: block;
-          width: max-content;
+          display: inline-block;
           min-width: 100%;
+          box-sizing: border-box;
         }
 
         .card-footer {
@@ -356,6 +371,7 @@ const developer = {
           display: flex;
           align-items: center;
           gap: 0.4rem;
+          flex-wrap: wrap;
         }
 
         .text-emerald { color: #10b981; }
@@ -401,23 +417,33 @@ const developer = {
             max-width: 280px;
             justify-content: center;
           }
-          .code-body {
-            font-size: 0.72rem;
-            padding: 0.8rem;
-          }
           .pill {
             font-size: 0.73rem;
             padding: 0.25rem 0.55rem;
           }
         }
 
+        @media (max-width: 500px) {
+          .code-body {
+            font-size: clamp(0.68rem, 3.2vw, 0.75rem);
+            padding: 0.75rem 0.6rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow-wrap: break-word;
+          }
+          .code-body code {
+            display: block;
+            width: 100%;
+            min-width: 0;
+          }
+        }
+
         @media (max-width: 400px) {
           .hero-name {
-            font-size: 1.6rem;
+            font-size: 1.55rem;
           }
-          .code-body {
-            font-size: 0.67rem;
-            padding: 0.7rem;
+          .card-topbar {
+            padding: 0.5rem 0.7rem;
           }
         }
       `}</style>

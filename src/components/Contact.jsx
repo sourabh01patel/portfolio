@@ -387,6 +387,7 @@ const Contact = ({ onShowToast }) => {
           font-weight: 700;
           color: var(--text-primary);
           margin-bottom: 0.5rem;
+          flex-wrap: wrap;
         }
 
         .form-group {
@@ -435,6 +436,7 @@ const Contact = ({ onShowToast }) => {
           color: #ef4444;
           font-size: 0.8rem;
           margin-top: 0.2rem;
+          flex-wrap: wrap;
         }
 
         .success-message-box {
@@ -486,11 +488,19 @@ const Contact = ({ onShowToast }) => {
 
         @media (max-width: 500px) {
           .contact-form-col {
-            padding: 1.25rem;
+            padding: 1.25rem 1rem;
           }
           .info-card {
-            padding: 1rem;
+            padding: 1rem 0.85rem;
             gap: 0.75rem;
+          }
+          .info-value {
+            font-size: 0.85rem;
+            white-space: normal;
+            word-break: break-all;
+          }
+          .form-heading {
+            font-size: 1.1rem;
           }
         }
       `}</style>

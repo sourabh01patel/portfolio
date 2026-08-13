@@ -318,6 +318,13 @@ img, svg, video, canvas {
 pre, code {
   max-width: 100%;
   overflow-x: auto;
+  font-family: var(--font-code);
+  -webkit-overflow-scrolling: touch;
+}
+
+pre {
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 @media (max-width: 850px) {
@@ -341,6 +348,8 @@ pre, code {
   }
   .section-title {
     font-size: 1.85rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 }
 
@@ -380,3 +389,4 @@ pre, code {
     padding: 1rem 0.75rem;
   }
 }
+

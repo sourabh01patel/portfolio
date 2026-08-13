@@ -202,9 +202,9 @@ const Navbar = ({ onOpenResume }) => {
         .nav-logo {
           display: flex;
           align-items: center;
-          gap: 0.55rem;
+          gap: 0.45rem;
           font-weight: 800;
-          font-size: 1.05rem;
+          font-size: clamp(0.85rem, 4vw, 1.05rem);
           letter-spacing: -0.01em;
           color: var(--text-primary);
           text-decoration: none;
@@ -218,9 +218,9 @@ const Navbar = ({ onOpenResume }) => {
         }
 
         .logo-icon-box {
-          width: 36px;
-          height: 36px;
-          min-width: 36px;
+          width: 34px;
+          height: 34px;
+          min-width: 34px;
           border-radius: 10px;
           background: var(--accent-gradient);
           display: flex;

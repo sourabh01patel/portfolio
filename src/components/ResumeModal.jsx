@@ -346,21 +346,39 @@ const ResumeModal = ({ isOpen, onClose }) => {
           font-style: italic;
         }
 
+        .r-contact-row {
+          font-size: 9pt;
+          color: #475569;
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 0.35rem;
+          word-break: break-word;
+        }
+
+        .r-proj-tech {
+          font-size: 9pt;
+          font-style: italic;
+          color: #475569;
+          word-break: break-word;
+        }
+
         @media (max-width: 640px) {
           .resume-modal-overlay {
             padding: 0.5rem;
           }
           .resume-paper {
-            padding: 1.5rem 1rem;
+            padding: 1.25rem 0.85rem;
+            font-size: 9.5pt;
           }
           .modal-top-bar {
-            padding: 0.75rem 1rem;
+            padding: 0.75rem 0.85rem;
           }
           .modal-title {
-            font-size: 0.875rem;
+            font-size: 0.825rem;
           }
           .r-name {
-            font-size: 16pt;
+            font-size: 15pt;
           }
           .r-item-header {
             flex-direction: column;

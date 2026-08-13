@@ -177,6 +177,8 @@ const Skills = () => {
           font-weight: 500;
           color: var(--text-secondary);
           transition: all 0.2s;
+          max-width: 100%;
+          word-break: break-word;
         }
 
         .clean-skill-pill:hover {
@@ -205,14 +207,18 @@ const Skills = () => {
           }
           .skill-filter-btn {
             font-size: 0.75rem;
-            padding: 0.3rem 0.7rem;
+            padding: 0.35rem 0.65rem;
           }
           .clean-skill-pill {
             font-size: 0.78rem;
-            padding: 0.3rem 0.6rem;
+            padding: 0.3rem 0.55rem;
           }
           .skill-category-card {
-            padding: 1.2rem 1rem;
+            padding: 1.1rem 0.85rem;
+          }
+          .category-title {
+            font-size: 1rem;
+            word-break: break-word;
           }
         }
       `}</style>
