@@ -225,17 +225,28 @@ const Contact = ({ onShowToast }) => {
                   Thank you for reaching out, <strong>{formData.name}</strong>. I will review your message and get back to you promptly.
                 </p>
                 <div className="form-integration-note">
-                  <span>✉️ Live email service active. Submission routed to <strong>{personalInfo.email}</strong>.</span>
+                  <span>✉️ Submission routed directly to <strong>{personalInfo.email}</strong>.</span>
                 </div>
-                <button 
-                  onClick={() => {
-                    setSubmitted(false);
-                    setFormData({ name: '', email: '', subject: '', message: '' });
-                  }}
-                  className="btn btn-secondary"
-                >
-                  Send Another Message
-                </button>
+                <div className="success-action-btns">
+                  <a 
+                    href={`mailto:${personalInfo.email}?subject=${encodeURIComponent(formData.subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`}
+                    className="btn btn-primary btn-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Mail size={16} />
+                    <span>Open in Email App</span>
+                  </a>
+                  <button 
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({ name: '', email: '', subject: '', message: '' });
+                    }}
+                    className="btn btn-secondary btn-sm"
+                  >
+                    Send Another Message
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="contact-form" noValidate>
@@ -534,6 +545,16 @@ const Contact = ({ onShowToast }) => {
           padding: 0.65rem 1rem;
           border-radius: 8px;
           border: 1px solid var(--border-color);
+        }
+
+        .success-action-btns {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          flex-wrap: wrap;
+          justify-content: center;
+          width: 100%;
+          margin-top: 0.5rem;
         }
 
         @media (max-width: 900px) {
